@@ -2,11 +2,14 @@
 
 public class BasicEnemyBehaviour : MonoBehaviour
 {
-    [SerializeField] private GameObject target;
+    [SerializeField] private GameObject target = null;
     [SerializeField] private float speed = 4;
 
     private void FixedUpdate()
     {
-        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        if(target)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        }
     }
 }
