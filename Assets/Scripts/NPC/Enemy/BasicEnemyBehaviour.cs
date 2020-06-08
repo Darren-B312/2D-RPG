@@ -9,7 +9,7 @@ public class BasicEnemyBehaviour : MonoBehaviour
     {
         if(target)
         {
-            transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+            //transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
         }
     }
 }

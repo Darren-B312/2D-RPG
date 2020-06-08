@@ -12,24 +12,25 @@ public class PlayerContactHandler : MonoBehaviour
         
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private void FixedUpdate()
     {
-        //Debug.Log("Enter Collision: " + collision.gameObject.name);
+
     }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        //Debug.Log("Enter Collider: " + collider.gameObject.name);
+        Debug.Log($"<color=green>Enter: {collider.tag}</color>");
+
     }
 
     void OnTriggerExit2D(Collider2D collider)
     {
-        //Debug.Log("Exit Collider: " + collider.gameObject.name);
-        if(collider.gameObject.name == "Terrain")
+        Debug.Log($"<color=red>Exit: {collider.tag}</color>");
+        
+        if(collider.tag == "Terrain") // TODO: Figure out a more robust means of checking collider type.
         {
-            Destroy(this.gameObject);
-            //Debug.Log($"Destroyed: {this.tag}");
+            Destroy(gameObject);
+            Debug.Log("You fell...");
         }
-
     }
 }
