@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class MovementController : MonoBehaviour
+public class PlayerMovementController : MonoBehaviour
 {
     [SerializeField] private float speed = 5;
 
@@ -20,19 +20,13 @@ public class MovementController : MonoBehaviour
     void Update()
     {
         ReadInput();
-        LogPosition((int)transform.position.x, (int)transform.position.y);
+        //LogPosition((int)transform.position.x, (int)transform.position.y);
     }
 
     void FixedUpdate()
     {
         movement = new Vector2(x * speed, y * speed);
         rb.velocity = movement;
-    }
-
-    void OnTriggerExit2D()
-    {
-        Destroy(this.gameObject);
-        Debug.Log($"Destroyed: {this.tag}");
     }
 
     private void ReadInput()

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Transform))]
-public class Dolly : MonoBehaviour
+public class CameraDolly : MonoBehaviour
 {
     [SerializeField] private Transform player = null;
 
