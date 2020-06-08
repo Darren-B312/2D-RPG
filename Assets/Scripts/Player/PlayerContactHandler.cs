@@ -2,9 +2,11 @@
 
 public class PlayerContactHandler : MonoBehaviour
 {
+    private InventoryObject inventoryObject;
+    
     void Start()
     {
-        
+        inventoryObject = GetComponent<PlayerInventoryManager>().inventory;
     }
 
     void Update()
@@ -20,6 +22,13 @@ public class PlayerContactHandler : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider)
     {
         Debug.Log($"<color=green>Enter: {collider.tag}</color>");
+
+        var item = collider.GetComponent<Item>();
+        if (item)
+        {
+            inventoryObject.AddItem(item.item, 1);
+            Destroy(collider.gameObject);
+        }
 
     }
 

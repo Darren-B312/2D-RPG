@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UIElements;
+﻿using UnityEngine;
 
 public class PlayerWeaponController : MonoBehaviour
 {
-    [SerializeField] private Weapon weapon;
+    public WeaponObject weapon;
     [SerializeField] private LayerMask combatLayer;
     private Transform attackPoint = null; // set this to be the players center?
 
@@ -16,15 +13,16 @@ public class PlayerWeaponController : MonoBehaviour
 
     void Update()
     {
-        if (weapon.currentAttackCD <= 0)
+        if (weapon.currentAttackCD <= 0) // check if weapon equiped?
         {
-            if(Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 Attack();
                 weapon.currentAttackCD = weapon.initialAttackCD;
             }
 
-        } else
+        }
+        else
         {
             weapon.currentAttackCD -= Time.deltaTime;
         }
@@ -36,17 +34,17 @@ public class PlayerWeaponController : MonoBehaviour
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, weapon.attackRange, combatLayer);
 
-        foreach(Collider2D h in hits)
+        foreach (Collider2D h in hits)
         {
             Debug.Log($"HIT: {h.name}");
             Destroy(h.gameObject);
         }
-        
+
     }
 
     private void OnDrawGizmosSelected()
     {
-        if(attackPoint)
+        if (attackPoint)
         {
             Gizmos.DrawWireSphere(attackPoint.position, weapon.attackRange);
         }
