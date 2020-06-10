@@ -44,9 +44,9 @@ public class PlayerWeaponController : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if (attackPoint)
-        {
-            Gizmos.DrawWireSphere(attackPoint.position, weapon.attackRange);
-        }
+        //if (attackPoint)
+        //{
+        //    Gizmos.DrawWireSphere(attackPoint.position, weapon.attackRange);
+        //}
     }
 }

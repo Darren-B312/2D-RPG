@@ -18,5 +18,5 @@ MonoBehaviour:
   name: 
   description: 
   initialAttackCD: 1
-  currentAttackCD: -0.006454556
-  attackRange: 5
+  currentAttackCD: -0.011369877
+  attackRange: 2
