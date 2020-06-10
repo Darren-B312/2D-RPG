@@ -2,29 +2,30 @@
 
 public class PlayerWeaponController : MonoBehaviour
 {
-    public WeaponObject weapon;
+    [SerializeField] private WeaponObject weapon = null; // Drag and drop from inspector.
     [SerializeField] private LayerMask combatLayer;
-    private Transform attackPoint = null; // set this to be the players center?
+    
+    private Transform attackPoint = null; // Center from which to measure range of weapon attack.
 
     void Start()
     {
-        attackPoint = transform;
+        attackPoint = transform; // Set attack point to player position.
     }
 
     void Update()
     {
-        if (weapon.currentAttackCD <= 0) // check if weapon equiped?
+        if (weapon.AttackCooldownTimer <= 0) // If weapon is ready.
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 Attack();
-                weapon.currentAttackCD = weapon.initialAttackCD;
+                weapon.AttackCooldownTimer = weapon.AttackCooldown;
             }
 
         }
         else
         {
-            weapon.currentAttackCD -= Time.deltaTime;
+            weapon.AttackCooldownTimer -= Time.deltaTime;
         }
     }
 
@@ -32,7 +33,7 @@ public class PlayerWeaponController : MonoBehaviour
     {
         // play animation here
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, weapon.attackRange, combatLayer);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, weapon.AttackRange, combatLayer);
 
         foreach (Collider2D h in hits)
         {
@@ -42,11 +43,12 @@ public class PlayerWeaponController : MonoBehaviour
 
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
-        //if (attackPoint)
-        //{
-        //    Gizmos.DrawWireSphere(attackPoint.position, weapon.attackRange);
-        //}
+        if (attackPoint)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(attackPoint.position, weapon.AttackRange);
+        }
     }
 }

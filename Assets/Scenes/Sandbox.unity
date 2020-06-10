@@ -429,12 +429,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrolMovementSpeed: 4
-  patrolRadius: 5
-  patrolPauseTime: 2
+  patrolRadius: 4
+  patrolPauseTime: 1
   patrolPauseTimer: 0
-  aggroRange: 5
-  chaseMovementSpeed: 5
-  meleeRange: 1
+  aggroRange: 2
+  chaseMovementSpeed: 4
+  meleeRange: 2
 --- !u!95 &625241569
 Animator:
   serializedVersion: 3
@@ -473,7 +473,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1033433930
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -769,7 +769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 302794e257c0c23448f3a1152ed33bee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 11400000, guid: 8d1dbd806cd0728428fa913d5ab7f9b3, type: 2}
+  weapon: {fileID: 11400000, guid: e6e191723239c3040905ea7b3497a531, type: 2}
   combatLayer:
     serializedVersion: 2
     m_Bits: 256

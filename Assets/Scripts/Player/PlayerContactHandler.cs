@@ -2,11 +2,11 @@
 
 public class PlayerContactHandler : MonoBehaviour
 {
-    private InventoryObject inventoryObject;
+    private InventoryScriptableObject inventory;
     
     void Start()
     {
-        inventoryObject = GetComponent<PlayerInventoryManager>().inventory;
+        inventory = GetComponent<PlayerInventoryManager>().Inventory;
     }
 
     void Update()
@@ -26,7 +26,7 @@ public class PlayerContactHandler : MonoBehaviour
         var item = collider.GetComponent<Item>();
         if (item)
         {
-            inventoryObject.AddItem(item.item, 1);
+            inventory.AddItem(item.ItemScriptableObject, 1);
             Destroy(collider.gameObject);
         }
 

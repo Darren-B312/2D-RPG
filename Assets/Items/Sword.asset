@@ -12,11 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ed5fcca8fe07fc4b81e76aa9c3704a4, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
-  id: 0
-  type: 1
-  name: 
-  description: 
-  initialAttackCD: 1
-  currentAttackCD: -0.011369877
+  attackCooldown: 2
+  attackCooldownTimer: -0.00007213047
   attackRange: 2

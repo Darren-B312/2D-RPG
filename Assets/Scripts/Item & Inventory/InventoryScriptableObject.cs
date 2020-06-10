@@ -5,19 +5,19 @@ using UnityEngine;
 // This is where methods for adding and removing inventory items will be.
 
 [CreateAssetMenu(fileName = "New Inventory", menuName = "Inventory System/Inventory")]
-public class InventoryObject : ScriptableObject
+public class InventoryScriptableObject : ScriptableObject
 {
     public List<InventorySlot> Inventory = new List<InventorySlot>();
 
-    public void AddItem(ItemObject _item, int x)
+    public void AddItem(BaseItemScriptableObject item, int amount)
     {
         bool hasItem = false;
 
         foreach(InventorySlot inventorySlot in Inventory)
         {
-            if(inventorySlot.item == _item)
+            if(inventorySlot.Item == item)
             {
-                inventorySlot.AddAmount(x);
+                inventorySlot.AddAmount(amount);
                 hasItem = true;
                 break;
             }
@@ -25,25 +25,9 @@ public class InventoryObject : ScriptableObject
 
         if(!hasItem)
         {
-            Inventory.Add(new InventorySlot(_item, x));
+            Inventory.Add(new InventorySlot(item, amount));
         }
     }
 }
 
-[System.Serializable]
-public class InventorySlot
-{
-    public ItemObject item;
-    public int count;
-    
-    public InventorySlot(ItemObject _item, int _count)
-    {
-        item = _item;
-        count = _count;
-    }
 
-    public void AddAmount(int x)
-    {
-        count += x;
-    }
-}

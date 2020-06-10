@@ -4,7 +4,12 @@
 
 public class PlayerInventoryManager : MonoBehaviour
 {
-    public InventoryObject inventory;
+    [SerializeField] private InventoryScriptableObject inventory;
+    public InventoryScriptableObject Inventory
+    {
+        get => inventory;
+        set => inventory = value;
+    }
 
     void Start()
     {
