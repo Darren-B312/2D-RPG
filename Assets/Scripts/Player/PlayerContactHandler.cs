@@ -21,7 +21,7 @@ public class PlayerContactHandler : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log($"<color=green>Enter: {collider.tag}</color>");
+        //Debug.Log($"<color=green>Enter: {collider.tag}</color>");
 
         var item = collider.GetComponent<Item>();
         if (item)
@@ -34,8 +34,8 @@ public class PlayerContactHandler : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collider)
     {
-        Debug.Log($"<color=red>Exit: {collider.tag}</color>");
-        
+        //Debug.Log($"<color=red>Exit: {collider.tag}</color>");
+
         if(collider.tag == "Terrain") // TODO: Figure out a more robust means of checking collider type.
         {
             Destroy(gameObject);

@@ -9,6 +9,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     void Start()
     {
+        combatLayer = LayerMask.GetMask("Combat");
         attackPoint = transform; // Set attack point to player position.
     }
 
@@ -43,12 +44,12 @@ public class PlayerWeaponController : MonoBehaviour
 
     }
 
-    private void OnDrawGizmos()
-    {
-        if (attackPoint)
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(attackPoint.position, weapon.AttackRange);
-        }
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    if (attackPoint)
+    //    {
+    //        Gizmos.color = Color.blue;
+    //        Gizmos.DrawWireSphere(attackPoint.position, weapon.AttackRange);
+    //    }
+    //}
 }
