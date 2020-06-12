@@ -1,25 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PursuitState : BaseState
 {
-    NPCPursuitBehaviour pursuitBehaviour;
-
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
-        pursuitBehaviour = animator.GetComponent<NPCPursuitBehaviour>();
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if(player)
         {
-            pursuitBehaviour.PursueTarget(player.transform);
+            animator.transform.position = Vector3.MoveTowards(animator.transform.position, player.transform.position, behaviour.MovementSpeed * Time.deltaTime);
         }
 
-        if(pursuitBehaviour.IsOutOfPursuitRange())
+        if(Vector3.Distance(animator.transform.position, behaviour.SpawnPoint) >= behaviour.PursuitMaxDistance)
         {
             animator.SetTrigger("Retreat");
         }

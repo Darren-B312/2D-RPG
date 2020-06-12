@@ -135,8 +135,6 @@ GameObject:
   - component: {fileID: 249366822}
   - component: {fileID: 249366824}
   - component: {fileID: 249366825}
-  - component: {fileID: 249366826}
-  - component: {fileID: 249366827}
   m_Layer: 8
   m_Name: Hostile_NPC
   m_TagString: Untagged
@@ -283,38 +281,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 249366819}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcff063f2bc83a449926f6167d3ee5c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 532e7c250c909e941b0fb3dfa1da9a2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hostile: 1
-  aggroDistance: 5
---- !u!114 &249366826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 249366819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac61c4c888ae0634c9a84188543f1337, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 2
-  pursuitMaxDistance: 6
---- !u!114 &249366827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 249366819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4240f9db05e936145a1cee8dee340116, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  retreatMovementSpeed: 4
+  aggroDistance: 4
+  movementSpeed: 4
+  pursuitMaxDistance: 8
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -894,6 +867,8 @@ GameObject:
   - component: {fileID: 1319593706}
   - component: {fileID: 1319593709}
   - component: {fileID: 1319593708}
+  - component: {fileID: 1319593711}
+  - component: {fileID: 1319593710}
   m_Layer: 8
   m_Name: Neutral_NPC
   m_TagString: Untagged
@@ -1012,6 +987,41 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1319593710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319593705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 532e7c250c909e941b0fb3dfa1da9a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hostile: 1
+  aggroDistance: 2
+  movementSpeed: 4
+  pursuitMaxDistance: 5
+--- !u!95 &1319593711
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319593705}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: caac3a6cd6b67f24fac2755a08b3e2d1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1857348439
 GameObject:
   m_ObjectHideFlags: 0

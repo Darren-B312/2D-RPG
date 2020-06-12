@@ -1,22 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class IdleState : BaseState
 {
-    NPCIdleBehaviour idleBehaviour;
-
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
-        idleBehaviour = animator.GetComponent<NPCIdleBehaviour>();
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (idleBehaviour.Hostile)
+        if (behaviour.Hostile)
         {
-            if (idleBehaviour.IsTargetInAggroDistance(player.transform))
+            if(Vector3.Distance(animator.transform.position, player.transform.position) <= behaviour.AggroDistance)
             {
                 animator.SetTrigger("Aggro");
             }

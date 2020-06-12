@@ -1,26 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RetreatState : BaseState
 {
-    NPCRetreatBehaviour retreatBehaviour;
-
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
-        retreatBehaviour = animator.GetComponent<NPCRetreatBehaviour>();
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (retreatBehaviour.IsHome())
+        if (Vector3.Distance(animator.transform.position, behaviour.SpawnPoint) <= 0.01f)
         {
             animator.SetTrigger("Home");
         }
         else
         {
-            retreatBehaviour.Retreat();
+            animator.transform.position = Vector3.MoveTowards(animator.transform.position, behaviour.SpawnPoint, behaviour.MovementSpeed * 2 * Time.deltaTime);
         }
     }
 
