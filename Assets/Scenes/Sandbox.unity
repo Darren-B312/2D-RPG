@@ -285,9 +285,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hostile: 1
-  aggroDistance: 4
+  aggroDistance: 3
   movementSpeed: 4
-  pursuitMaxDistance: 8
+  pursuitMaxDistance: 10
+  spawnPoint: {x: 10, y: 5, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -999,10 +1000,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 532e7c250c909e941b0fb3dfa1da9a2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hostile: 1
-  aggroDistance: 2
+  hostile: 0
+  aggroDistance: 3
   movementSpeed: 4
   pursuitMaxDistance: 5
+  spawnPoint: {x: 0, y: 5, z: 0}
 --- !u!95 &1319593711
 Animator:
   serializedVersion: 3
