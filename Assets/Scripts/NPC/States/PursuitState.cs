@@ -2,7 +2,8 @@
 
 public class PursuitState : BaseState
 {
-    private const string trigger = "Retreat";
+    private const string retreatTrigger = "Retreat";
+    private const string attackTrigger = "Attack";
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -18,12 +19,18 @@ public class PursuitState : BaseState
 
         if(Vector3.Distance(animator.transform.position, behaviour.SpawnPoint) >= behaviour.PursuitMaxDistance)
         {
-            animator.SetTrigger(trigger);
+            animator.SetTrigger(retreatTrigger);
+        }
+
+        if(Vector3.Distance(animator.transform.position, player.transform.position) <= behaviour.AttackRange)
+        {
+            animator.SetTrigger(attackTrigger);
         }
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.ResetTrigger(trigger);
+        animator.ResetTrigger(retreatTrigger);
+        animator.ResetTrigger(attackTrigger);
     }
 }

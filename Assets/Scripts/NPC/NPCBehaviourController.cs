@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Xml.Schema;
 using UnityEditor;
 using UnityEngine;
 
@@ -19,24 +20,25 @@ public class NPCBehaviourController : MonoBehaviour
     [SerializeField] private float patrolPauseTime;
     [SerializeField] private float patrolPauseTimer;
 
+    [SerializeField] private float attackRange;
+
 
     public Vector3 SpawnPoint { get => spawnPoint; set => spawnPoint = value; }
     public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
 
-
     public bool Attackable { get => attackable; set => attackable = value; }
     public float PursuitMaxDistance { get => pursuitMaxDistance; set => pursuitMaxDistance = value; }
 
-
     public bool Hostile { get => hostile; set => hostile = value; }
     public float AggroDistance { get => aggroDistance; set => aggroDistance = value; }
-
 
     public bool Patrol { get => patrol; private set => patrol = value; }
     public float PatrolRadius { get => patrolRadius; set => patrolRadius = value; }
     public float PatrolPauseTime { get => patrolPauseTime; set => patrolPauseTime = value; }
     public float PatrolPauseTimer { get => patrolPauseTimer; set => patrolPauseTimer = value; }
     public List<Vector3> PatrolPoints { get; set; }
+
+    public float AttackRange { get => attackRange; set => attackRange = value; }
 
 
     private void Awake()
@@ -62,6 +64,8 @@ public class NPCBehaviourController : MonoBehaviour
         Gizmos.DrawWireSphere(spawnPoint, pursuitMaxDistance);
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(spawnPoint, new Vector3(patrolRadius*2, patrolRadius*2));
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 
     [CustomEditor(typeof(NPCBehaviourController))]
@@ -95,6 +99,7 @@ public class NPCBehaviourController : MonoBehaviour
             if (script.attackable)
             {
                 script.pursuitMaxDistance = EditorGUILayout.FloatField("Pursuit Distance", script.pursuitMaxDistance);
+                script.attackRange = EditorGUILayout.FloatField("Attack Range", script.attackRange);
             }
             else
             {

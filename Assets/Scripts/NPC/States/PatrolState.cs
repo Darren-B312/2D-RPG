@@ -9,7 +9,7 @@ public class PatrolState : BaseState
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
         target = behaviour.PatrolPoints[0];
-        behaviour.PatrolPauseTimer = behaviour.PatrolPauseTime;
+        behaviour.PatrolPauseTimer = 0;
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

@@ -284,11 +284,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 532e7c250c909e941b0fb3dfa1da9a2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hostile: 1
-  aggroDistance: 3
-  movementSpeed: 4
-  pursuitMaxDistance: 10
   spawnPoint: {x: 10, y: 5, z: 0}
+  movementSpeed: 4
+  attackable: 1
+  pursuitMaxDistance: 10
+  hostile: 1
+  aggroDistance: 7
+  patrol: 1
+  patrolRadius: 2
+  patrolPauseTime: 3
+  patrolPauseTimer: 0
+  attackRange: 3
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1000,11 +1006,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 532e7c250c909e941b0fb3dfa1da9a2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hostile: 0
-  aggroDistance: 3
-  movementSpeed: 4
-  pursuitMaxDistance: 5
   spawnPoint: {x: 0, y: 5, z: 0}
+  movementSpeed: 4
+  attackable: 1
+  pursuitMaxDistance: 10
+  hostile: 0
+  aggroDistance: 0
+  patrol: 1
+  patrolRadius: 2
+  patrolPauseTime: 4
+  patrolPauseTimer: 0
+  attackRange: 0
 --- !u!95 &1319593711
 Animator:
   serializedVersion: 3
