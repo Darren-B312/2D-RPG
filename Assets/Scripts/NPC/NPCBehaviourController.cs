@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Xml.Schema;
 using UnityEditor;
 using UnityEngine;
 
@@ -9,8 +8,10 @@ public class NPCBehaviourController : MonoBehaviour
     [SerializeField] private Vector3 spawnPoint;
     [SerializeField] private float movementSpeed;
 
+    [SerializeField] private bool combat;
     [SerializeField] private bool attackable;
     [SerializeField] private float pursuitMaxDistance;
+    [SerializeField] private float attackRange;
 
     [SerializeField] private bool hostile;
     [SerializeField] private float aggroDistance;
@@ -20,7 +21,6 @@ public class NPCBehaviourController : MonoBehaviour
     [SerializeField] private float patrolPauseTime;
     [SerializeField] private float patrolPauseTimer;
 
-    [SerializeField] private float attackRange;
 
 
     public Vector3 SpawnPoint { get => spawnPoint; set => spawnPoint = value; }
@@ -39,6 +39,7 @@ public class NPCBehaviourController : MonoBehaviour
     public List<Vector3> PatrolPoints { get; set; }
 
     public float AttackRange { get => attackRange; set => attackRange = value; }
+    public bool Combat { get => combat; set => combat = value; }
 
 
     private void Awake()
@@ -54,6 +55,7 @@ public class NPCBehaviourController : MonoBehaviour
 
     void Update()
     {
+
     }
 
     private void OnDrawGizmosSelected()
@@ -75,7 +77,7 @@ public class NPCBehaviourController : MonoBehaviour
         {
             var script = target as NPCBehaviourController;
 
-            script.spawnPoint = EditorGUILayout.Vector2Field("", script.spawnPoint); // Use Vector 2 field so z co-ordinate can't be messed with.
+            script.spawnPoint = EditorGUILayout.Vector2Field("", script.spawnPoint); // Use Vector 2 field so z co-ordinate can't be messed with from editor.
 
             GUILayout.Space(10);
 

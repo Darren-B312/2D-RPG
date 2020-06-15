@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CombatState : BaseState
 {
-    private const string trigger = "Pursuit";
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -19,12 +18,12 @@ public class CombatState : BaseState
         
         if(Vector3.Distance(animator.transform.position, player.transform.position) > behaviour.AttackRange)
         {
-            animator.SetTrigger(trigger);
+            animator.SetTrigger(StateTrigger.PURSUIT);
         }
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.ResetTrigger(trigger);
+        animator.ResetTrigger(StateTrigger.PURSUIT);
     }
 }

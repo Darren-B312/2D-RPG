@@ -2,18 +2,17 @@
 
 public class RetreatState : BaseState
 {
-    private const string trigger = "Home";
-
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
+        behaviour.Combat = false;
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (Vector3.Distance(animator.transform.position, behaviour.SpawnPoint) <= 0.01f)
+        if (Vector3.Distance(animator.transform.position, behaviour.SpawnPoint) <= 0.01f) // If NPC is at spawn point.
         {
-            animator.SetTrigger(trigger);
+            animator.SetTrigger(StateTrigger.HOME);
         }
         else
         {
@@ -23,6 +22,6 @@ public class RetreatState : BaseState
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.ResetTrigger(trigger);
+        animator.ResetTrigger(StateTrigger.HOME);
     }
 }

@@ -2,7 +2,6 @@
 
 public class PatrolState : BaseState
 {
-    private const string trigger = "Aggro";
     private Vector3 target;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -18,8 +17,13 @@ public class PatrolState : BaseState
         {
             if (Vector3.Distance(animator.transform.position, player.transform.position) <= behaviour.AggroDistance)
             {
-                animator.SetTrigger(trigger);
+                animator.SetTrigger(StateTrigger.AGGRO);
             }
+        }
+
+        if (behaviour.Combat)
+        {
+            animator.SetTrigger(StateTrigger.AGGRO);
         }
 
         if (Vector3.Distance(animator.transform.position, target) <= 0.01f) // If npc is at target point.
@@ -41,6 +45,6 @@ public class PatrolState : BaseState
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.ResetTrigger(trigger);
+        animator.ResetTrigger(StateTrigger.AGGRO);
     }
 }

@@ -286,15 +286,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: {x: 10, y: 5, z: 0}
   movementSpeed: 4
+  combat: 0
   attackable: 1
-  pursuitMaxDistance: 10
+  pursuitMaxDistance: 8
+  attackRange: 3
   hostile: 1
-  aggroDistance: 7
+  aggroDistance: 4
   patrol: 1
   patrolRadius: 2
-  patrolPauseTime: 3
+  patrolPauseTime: 2
   patrolPauseTimer: 0
-  attackRange: 3
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,7 +745,9 @@ GameObject:
   - component: {fileID: 1155171798}
   - component: {fileID: 1155171801}
   - component: {fileID: 1155171800}
-  m_Layer: 0
+  - component: {fileID: 1155171803}
+  - component: {fileID: 1155171802}
+  m_Layer: 8
   m_Name: Friendly_NPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -862,6 +865,49 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1155171802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155171797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 532e7c250c909e941b0fb3dfa1da9a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {x: -10, y: 5, z: 0}
+  movementSpeed: 2
+  combat: 0
+  attackable: 0
+  pursuitMaxDistance: 0
+  attackRange: 0
+  hostile: 0
+  aggroDistance: 0
+  patrol: 1
+  patrolRadius: 2
+  patrolPauseTime: 2
+  patrolPauseTimer: 0
+--- !u!95 &1155171803
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155171797}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: caac3a6cd6b67f24fac2755a08b3e2d1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1319593705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,16 +1053,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {x: 0, y: 5, z: 0}
-  movementSpeed: 4
+  movementSpeed: 3
+  combat: 0
   attackable: 1
   pursuitMaxDistance: 10
+  attackRange: 3
   hostile: 0
   aggroDistance: 0
   patrol: 1
   patrolRadius: 2
-  patrolPauseTime: 4
+  patrolPauseTime: 2
   patrolPauseTimer: 0
-  attackRange: 0
 --- !u!95 &1319593711
 Animator:
   serializedVersion: 3
@@ -1208,9 +1255,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: 8d1dbd806cd0728428fa913d5ab7f9b3, type: 2}
-  combatLayer:
+  layer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
 --- !u!114 &1857348447
 MonoBehaviour:
   m_ObjectHideFlags: 0
