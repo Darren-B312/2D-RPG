@@ -33,22 +33,18 @@ public class PlayerWeaponController : MonoBehaviour
 
     private void Attack()
     {
-        // play animation here
-
         Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, weapon.AttackRange, layer);
 
         foreach (Collider2D h in hits)
         {
             NPCBehaviourController behaviourController = h.GetComponent<NPCBehaviourController>();
 
-            if(behaviourController.Attackable) // If the NPC is flagged for combat.
+            if (behaviourController && behaviourController.Attackable) // If the NPC is flagged for combat.
             {
                 Debug.Log($"HIT: {h.name}");
                 behaviourController.Combat = true;
             }
-
         }
-
     }
 
     private void OnDrawGizmos()

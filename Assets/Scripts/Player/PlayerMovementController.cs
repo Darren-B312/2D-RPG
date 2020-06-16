@@ -6,7 +6,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float speed = 5;
 
     private Rigidbody2D rb;
-    private Vector2 movement;
+    private Vector3 movement;
     private float x;
     private float y;
     private int oldX;
@@ -21,11 +21,21 @@ public class PlayerMovementController : MonoBehaviour
     {
         ReadInput();
         //LogPosition((int)transform.position.x, (int)transform.position.y);
+
+        //if(Input.GetKey(KeyCode.Space) || Input.GetButton())
+        //{
+        //    Debug.Log("holding space..");
+        //}
+
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    Debug.Log("Tapped Spacebar");
+        //}
     }
 
     void FixedUpdate()
     {
-        movement = new Vector2(x * speed, y * speed);
+        movement = new Vector3(x * speed, y * speed);
         rb.velocity = movement;
     }
 
