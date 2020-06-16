@@ -1,36 +1,54 @@
-﻿using UnityEditorInternal;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class IdleState : BaseState
 {
+    private Vector3 target; // The current target point in the NPC patrol.
+
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
+        target = behaviour.PatrolPoints[0];
+        behaviour.PatrolPauseTimer = 0;
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(behaviour.Patrol) // Check if npc is flagged to patrol.
+        if (behaviour.Patrol) // If NPC is flagged as patrol.
         {
-            animator.SetBool("isPatrol", behaviour.Patrol);
-        }
-
-        if (behaviour.Hostile) // Check if npc is flagged as hostile.
-        {
-            if(Vector3.Distance(animator.transform.position, player.transform.position) <= behaviour.AggroDistance)
+            if (Vector3.Distance(animator.transform.position, target) <= 0.01f) // If NPC is at target patrol point.
             {
-                animator.SetTrigger(StateTrigger.AGGRO);
+                if (behaviour.PatrolPauseTimer <= 0) // If npc has waited long enough.
+                {
+                    target = behaviour.PatrolPoints[Random.Range(0, behaviour.PatrolPoints.Count)]; // Pick a new random point.
+                    behaviour.PatrolPauseTimer = behaviour.PatrolPauseTime; // Reset timer.
+                }
+                else
+                {
+                    behaviour.PatrolPauseTimer -= Time.deltaTime; // Otherwise, decrement timer.
+                }
             }
+
+            animator.transform.position = Vector3.MoveTowards(animator.transform.position, target, behaviour.MovementSpeed * Time.deltaTime); // Move towards target.
         }
 
-        if (behaviour.Combat)
+        if(behaviour.Player.activeSelf) // If Player is active.
         {
-            animator.SetTrigger(StateTrigger.AGGRO);
+            if(behaviour.Hostile) // If NPC is hostile.
+            {
+                if (Vector3.Distance(animator.transform.position, behaviour.Player.transform.position) <= behaviour.AggroDistance) // If Player is in NPC aggro range.
+                {
+                    animator.SetTrigger(StateTransitionParameter.AGGRO); // Transition to Pursuit State.
+                }
+            }
+            else if(behaviour.Combat) // If NPC is in combat.
+            {
+                animator.SetTrigger(StateTransitionParameter.AGGRO); // Transition to Pursuit State.
+            }
         }
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.ResetTrigger(StateTrigger.AGGRO);
+        animator.ResetTrigger(StateTransitionParameter.AGGRO);
     }
 }

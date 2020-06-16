@@ -2,6 +2,8 @@
 
 public class RetreatState : BaseState
 {
+    private const int RetreatMultiplier = 2;
+
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
@@ -12,16 +14,16 @@ public class RetreatState : BaseState
     {
         if (Vector3.Distance(animator.transform.position, behaviour.SpawnPoint) <= 0.01f) // If NPC is at spawn point.
         {
-            animator.SetTrigger(StateTrigger.HOME);
+            animator.SetTrigger(StateTransitionParameter.HOME); // Transition to Idle State.
         }
         else
         {
-            animator.transform.position = Vector3.MoveTowards(animator.transform.position, behaviour.SpawnPoint, behaviour.MovementSpeed * 2 * Time.deltaTime); // Retreat at 2x normal movement speed.
+            animator.transform.position = Vector3.MoveTowards(animator.transform.position, behaviour.SpawnPoint, behaviour.MovementSpeed * RetreatMultiplier * Time.deltaTime); // Retreat at x times normal movement speed.
         }
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.ResetTrigger(StateTrigger.HOME);
+        animator.ResetTrigger(StateTransitionParameter.HOME);
     }
 }

@@ -38,8 +38,7 @@ public class PlayerContactHandler : MonoBehaviour
 
         if(collider.tag == "Terrain") // TODO: Figure out a more robust means of checking collider type.
         {
-            Destroy(gameObject);
-            Debug.Log("You fell...");
+            gameObject.SetActive(false);
         }
     }
 }

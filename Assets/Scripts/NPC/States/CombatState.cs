@@ -4,26 +4,31 @@ using UnityEngine;
 
 public class CombatState : BaseState
 {
-
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
-
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // do combat stuff here
-        Debug.Log("combat stuff...");
-        
-        if(Vector3.Distance(animator.transform.position, player.transform.position) > behaviour.AttackRange)
+        if(behaviour.Player.activeSelf) // If Player is active.
         {
-            animator.SetTrigger(StateTrigger.PURSUIT);
+            Debug.Log("do combat stuff here...");
+
+            if (Vector3.Distance(animator.transform.position, behaviour.Player.transform.position) > behaviour.AttackRange) // If Player is beyond NPC attack range.
+            {
+                animator.SetTrigger(StateTransitionParameter.PURSUIT); // Transition to Pursuit State.
+            }
+        }
+        else
+        {
+            animator.SetTrigger(StateTransitionParameter.RETREAT); // Else transition to Retreat State.
         }
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.ResetTrigger(StateTrigger.PURSUIT);
+        animator.ResetTrigger(StateTransitionParameter.PURSUIT);
+        animator.ResetTrigger(StateTransitionParameter.RETREAT);
     }
 }
